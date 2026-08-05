@@ -16,7 +16,7 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(cookieParser());
 app.use(cors(
  {
-   origin:"http://localhost:5173",
+   origin:process.env.CLIENT_URL,
    credentials:true,
 }
 ))
@@ -25,6 +25,5 @@ app.use("/api/auth",authRoute);
 app.use("/api/messages",messageRoute);
 
 server.listen(PORT,()=>{
-  console.log("server is running on port"+PORT);
   connectDB();
 });
