@@ -16,13 +16,13 @@ services:
     expose:
        - "5000"
     environment:
-      - PORT= ${PORT}
-      - MONGODB_URI= ${MONGODB_URI}
-      - JWT_SECRET= ${JWT_SECRET}
-      - CLOUDINARY_CLOUD_NAME= ${CLOUDINARY_CLOUD_NAME}
-      - CLOUDINARY_API_KEY= ${CLOUDINARY_API_KEY}
-      - CLOUDINARY_API_SECRET= ${CLOUDINARY_API_SECRET}
-      - CLIENT_URL= ${CLIENT_URL}
+      - PORT=${PORT}
+      - MONGODB_URI=${MONGODB_URI}
+      - JWT_SECRET=${JWT_SECRET}
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
+      - CLIENT_URL=${CLIENT_URL}
     networks:
       - app-network
     restart: unless-stopped
