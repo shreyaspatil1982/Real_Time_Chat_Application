@@ -1,0 +1,51 @@
+services:
+  frontend:
+    image: ${DOCKERHUB_USERNAME}/chat-app-frontend:${GITHUB_SHA}
+    container_name: chat-frontend
+    expose:
+      - "4173"
+    networks:
+      - app-network
+    depends_on:
+      - backend
+    restart: unless-stopped
+  
+  backend: 
+    image: ${DOCKERHUB_USERNAME}/chat-app-backend:${GITHUB_SHA}
+    container_name: chat-backend
+    expose:
+       - "5000"
+    environment:
+      - PORT= ${PORT}
+      - MONGODB_URI= ${MONGODB_URI}
+      - JWT_SECRET= ${JWT_SECRET}
+      - CLOUDINARY_CLOUD_NAME= ${CLOUDINARY_CLOUD_NAME}
+      - CLOUDINARY_API_KEY= ${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET= ${CLOUDINARY_API_SECRET}
+      - CLIENT_URL= ${CLIENT_URL}
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    container_name: chat-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+  
+    
+
+
