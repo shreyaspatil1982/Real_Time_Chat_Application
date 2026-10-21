@@ -12,7 +12,7 @@ import {Loader} from "lucide-react";
 import {Toaster} from "react-hot-toast";
 
 function App() {
-    const{authUser,checkAuth,isCheckingAuth,onlineUsers} =useAuthStore();
+    const{authUser,checkAuth,isCheckingAuth} =useAuthStore();
     
    console.log(authUser);
   
